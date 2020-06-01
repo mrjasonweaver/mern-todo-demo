@@ -4,7 +4,7 @@ import { NotFound  } from '~/components/NotFound';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Header } from '~/components/Header';
 import { Footer } from '~/components/Footer';
-import { Hi } from '~/components/Hi';
+import { TodoList } from '~/components/TodoList';
 
 export class App extends React.Component {
   public render() {
@@ -35,10 +35,10 @@ function AnimationApp() {
         >
           <Switch location={location}>
             <Route exact path="/">
-              <Redirect to="/hi" />
+              <Redirect to="/todos" />
             </Route>
-            <Route path="/hi">
-              <Hi />
+            <Route path="/todos">
+              <TodoList />
             </Route>
             <Route path="*">
               <NotFound />
