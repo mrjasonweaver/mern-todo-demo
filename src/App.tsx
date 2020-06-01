@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, Switch, useLocation, Redirect } from "reac
 import { NotFound  } from '~/components/NotFound';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Header } from '~/components/Header';
-import { Footer } from '~/components/Footer';
 import { TodoList } from '~/components/TodoList';
 
 export class App extends React.Component {
@@ -16,7 +15,6 @@ export class App extends React.Component {
               <AnimationApp />
             </Route>
         </Router>
-        <Footer />
       </div>
     )
   }
@@ -26,8 +24,8 @@ function AnimationApp() {
   let location = useLocation();
 
   return (
-    <div style={styles.fill} className="main">
-      <TransitionGroup style={styles.content}>
+    <div className="main">
+      <TransitionGroup>
         <CSSTransition
           key={location.pathname}
           classNames="fade"
@@ -49,12 +47,3 @@ function AnimationApp() {
     </div>
   );
 }
-
-const styles = { content: {}, fill: {}};
-
-styles.fill = {
-  position: "relative",
-};
-
-styles.content = {
-};
