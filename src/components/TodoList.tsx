@@ -28,32 +28,17 @@ export const TodoList = () => {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className="section">
-        <div className="grid grid-wide">
-          <div className="sm-grid4">
-            <div className="section">
-              <div className="contain">
-                <div className="profile-wrap">
-                  <div className="profile-header">
-                    <h1 className="alt-font alpha text-center">Todos</h1>
-                    <p className="text-center">
-                      This is your todo list.<br/>
-                      <Link to="/create">Create</Link>, Edit, or complete a todo.
-                    </p>
-                    <div>
-                    {items.map(item => (
-                      <div key={item.name} className="split">
-                        <span className="dt">{item.name}</span>
-                        <span className="dd">{item.description}</span>
-                      </div>
-                    ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>  
-          </div>
+      <div>
+        <p className="text-center">
+          This is your todo list.<br/>
+          <Link to="/create">Create</Link>, Edit, or complete a todo.
+        </p>
+      {items.map(item => (
+        <div key={item.name} className="split">
+          <span className="dt">{item.name}</span>
+          <span className="dd">{item.description}</span>
         </div>
+      ))}
       </div>
     )
   }
