@@ -1,4 +1,4 @@
-import { Todo } from '~/models/todo.model';
+import { Todo, TodoChecked } from '~/models/todo.model';
 
 const url = 'http://localhost:5000/todos';
 
@@ -30,5 +30,18 @@ export const deleteTodo = async (id: String): Promise<Object> => {
   };
   console.log(id)
   const res = await fetch(`${url}/${id}/delete`, requestOptions);
+  return await res.json();
+}
+
+export const checkTodo = async (id: String, postData: TodoChecked): Promise<Object> => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  };
+  const res = await fetch(`${url}/${id}/update`, requestOptions);
   return await res.json();
 }

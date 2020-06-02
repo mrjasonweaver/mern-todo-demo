@@ -1,18 +1,17 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useInput } from '~/hooks/inputHook';
 import { postTodo } from '~/services/todos.service';
 import { Todo } from '~/models/todo.model';
 
-export const TodoForm = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+export const TodoForm = ({submit, isSubmitted}) => {
   const { value:Name, bind:bindName, reset:resetName } = useInput('');
   const { value:Description, bind:bindDescription, reset:resetDescription } = useInput('');
   const { value:DueDate, bind:bindDueDate, reset:resetDueDate } = useInput('');
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmitted(true);
     evt.preventDefault();
+    submit(true);
   }
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const TodoForm = () => {
           resetDueDate();
         });
     }
-}, [isSubmitted]);
+  }, [isSubmitted]);
 
 
   return (
