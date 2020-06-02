@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useInput } from '~/hooks/inputHook';
+import { postTodo } from '~/services/todos.service';
+import { Todo } from '~/models/todo.model';
 
 export const TodoForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -8,35 +10,28 @@ export const TodoForm = () => {
   const { value:Description, bind:bindDescription, reset:resetDescription } = useInput('');
   const { value:DueDate, bind:bindDueDate, reset:resetDueDate } = useInput('');
 
-  const handleSubmit = evt => {
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitted(true);
     evt.preventDefault();
   }
 
   useEffect(() => {
     if (isSubmitted) {
-      const postData = {
+      const postData: Todo = {
         name: Name,
         description: Description,
         target_completion_date: DueDate
       };
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(postData)
-      };
-      fetch('http://localhost:5000/todos/create', requestOptions)
-        .then(response => {
+      postTodo(postData)
+        .then(() => {
           resetName();
           resetDescription();
           resetDueDate();
-          return response.json();
-        })
-        .catch(error => {
-          console.error('There was an error!', error);
+        }, error => {
+          console.error(error);
+          resetName();
+          resetDescription();
+          resetDueDate();
         });
     }
 }, [isSubmitted]);

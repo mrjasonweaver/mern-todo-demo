@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
 }
+body {
+  font-family: 'Ubuntu', sans-serif;
+  line-height: 1.5;
+  letter-spacing: .01em;
+}
 .hide-display {
   display: none;
 }
