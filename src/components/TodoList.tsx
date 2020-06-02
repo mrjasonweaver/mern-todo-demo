@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTodos } from '~/services/todos.service';
+import { TodoForm } from '~/components/TodoForm';
 
 export const TodoList = () => {
   const [error, setError] = useState(null);
@@ -23,20 +24,24 @@ export const TodoList = () => {
   }, [])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="container">Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <div className="container">Loading...</div>;
   } else {
     return (
-      <div>
+      <div className="container">
         <p className="text-center">
           This is your todo list.<br/>
           <Link to="/create">Create</Link>, Edit, or complete a todo.
         </p>
+      <TodoForm />
       {items.map(item => (
         <div key={item.name} className="split">
-          <span className="dt">{item.name}</span>
-          <span className="dd">{item.description}</span>
+          <span className="item-check">Check</span>&nbsp;
+          <span className="item-name">{item.name}</span>&nbsp;
+          <span className="item-description">{item.description}</span>&nbsp;
+          <span className="item-delete">delete</span>&nbsp;
+          <span className="item-edit">edit</span>
         </div>
       ))}
       </div>

@@ -1,5 +1,18 @@
 /* Globals */
+* {
+  margin: 0;
+  padding: 0;
+}
+.hide-display {
+  display: none;
+}
+.container {
+  margin: 20px auto;
+  padding: 0 2% 10px;
+  max-width: 900px;
+}
 
+/* Animation */
 .fade-enter {
   opacity: 0.01;
   transform: translate(0, 10px);
@@ -13,7 +26,6 @@
   opacity: 1;
   transform: translate(0, 0px);
 }
-
 .fade-exit.fade-exit-active {
   top: 0;
   left: 0;

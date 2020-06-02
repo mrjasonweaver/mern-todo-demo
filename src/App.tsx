@@ -29,8 +29,7 @@ function AnimationApp() {
         <CSSTransition
           key={location.pathname}
           classNames="fade"
-          timeout={300}
-        >
+          timeout={300}>
           <Switch location={location}>
             <Route exact path="/">
               <Redirect to="/todos" />
