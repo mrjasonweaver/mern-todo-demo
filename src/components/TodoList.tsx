@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import { fetchTodos } from '~/services/todos.service';
 import { TodoForm } from '~/components/TodoForm';
 
+const formatDate = date => {
+  const td = new Date(date);
+  return date ? `${td.getMonth()}/${td.getDate()}/${td.getFullYear()}` : '';
+}
+
 export const TodoList = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,7 +26,7 @@ export const TodoList = () => {
           setError(error);
         }
       )
-  }, [])
+  }, [items])
 
   if (error) {
     return <div className="container">Error: {error.message}</div>;
@@ -35,11 +40,12 @@ export const TodoList = () => {
           <Link to="/create">Create</Link>, Edit, or complete a todo.
         </p>
       <TodoForm />
-      {items.map(item => (
-        <div key={item.name} className="split">
+      {items.map((item, i) => (
+        <div key={item.name ? `${item.name}-${i}` : i} className="split">
           <span className="item-check">Check</span>&nbsp;
           <span className="item-name">{item.name}</span>&nbsp;
           <span className="item-description">{item.description}</span>&nbsp;
+          <span className="item-duedate">{formatDate(item.target_completion_date)}</span>&nbsp;
           <span className="item-delete">delete</span>&nbsp;
           <span className="item-edit">edit</span>
         </div>
