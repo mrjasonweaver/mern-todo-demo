@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useEffect, useState, FunctionComponent } from 'react';
-import { Link } from 'react-router-dom';
 import { fetchTodos, deleteTodo, checkTodo } from '~/services/todos.service';
 import { TodoForm } from '~/components/TodoForm';
 import { Todos } from '~/components/Todos';
@@ -77,10 +76,6 @@ export const TodoList: FunctionComponent = () => {
   } else {
     return (
       <section className="container">
-        <p className="text-center">
-          This is your todo list.<br/>
-          <Link to="/create">Create</Link>, Edit, or complete a todo.
-        </p>
         <TodoForm
           submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
           isSubmitted={isSubmitted}
