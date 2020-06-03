@@ -3,12 +3,9 @@ import { useEffect, useState, FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTodos, deleteTodo, checkTodo } from '~/services/todos.service';
 import { TodoForm } from '~/components/TodoForm';
-import { Todo, TodoChecked } from '~/models/todo.model'; 
-
-const formatDate = (date: Date): String => {
-  const td = new Date(date);
-  return date ? `${td.getMonth()}/${td.getDate()}/${td.getFullYear()}` : '';
-}
+import { Todos } from '~/components/Todos';
+import { Todo, TodoChecked } from '~/models/todo.model';
+import mapSort from 'mapsort'; 
 
 export const TodoList: FunctionComponent = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -23,8 +20,16 @@ export const TodoList: FunctionComponent = () => {
 
   useEffect(() => {
     fetchTodos().then((result: Todo[]) => {
-      const todos = result.filter(todo => !todo.completion_date);
-      const completed = result.filter(todo => todo.completion_date);
+      const sorted: Todo[] = mapSort(
+        result,
+        (element: Todo): number => {
+          const theDate: any = element.target_completion_date;
+          return Date.parse(theDate);
+        },
+        (a: number, b: number): number => a - b
+      );
+      const todos = sorted.filter(todo => !todo.completion_date);
+      const completed = sorted.filter(todo => todo.completion_date);
       setIsLoaded(true);
       setTodos(todos);
       setCompleted(completed);
@@ -58,17 +63,6 @@ export const TodoList: FunctionComponent = () => {
     }
   }, [isSubmitted, isChecked, isDeleted]);
 
-  const handleDelete = (id: String): void => {
-    console.log('top of handleDelete');
-    setDeleteId(id);
-    setIsDeleted(true);
-  }
-
-  const handleCheck = (id: String): void => {
-    setCheckedId(id);
-    setIsChecked(true);
-  }
-
   if (error) {
     return <section className="container">Error: {error.message}</section>;
   } else if (!isLoaded) {
@@ -80,28 +74,22 @@ export const TodoList: FunctionComponent = () => {
           This is your todo list.<br/>
           <Link to="/create">Create</Link>, Edit, or complete a todo.
         </p>
-        <TodoForm submit={isSubmitted => setIsSubmitted(isSubmitted)} isSubmitted={isSubmitted} />
-        {todos.map((item: Todo, i: number) => (
-          <div key={`${i}--${item._id}`} className="split">
-            <span className="item-check" onClick={() => handleCheck(item._id)}>Check</span>&nbsp;
-            <span className="item-name">{item.name}</span>&nbsp;
-            <span className="item-description">{item.description}</span>&nbsp;
-            <span className="item-duedate">{formatDate(item.target_completion_date)}</span>&nbsp;
-            <span className="item-delete" onClick={() => handleDelete(item._id)}>delete</span>&nbsp;
-            <span className="item-edit">edit</span>
-          </div>
-        ))}
+        <TodoForm
+          submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
+          isSubmitted={isSubmitted} />
+        <Todos
+          deleteId={(deleteId: String) => setDeleteId(deleteId)}
+          checkId={(checkId: String) => setCheckedId(checkId)}
+          deleteTodo={(isDeleted: boolean) => setIsDeleted(isDeleted)}
+          checkTodo={(isChecked: boolean) => setIsChecked(isChecked)}
+          todos={todos} />
         <h3>Completed</h3>
-        {completed.map((doneItem: Todo, i: number) => (
-          <div key={`${i}--${doneItem._id}`} className="split">
-            <span className="item-check" onClick={() => handleCheck(doneItem._id)}>Check</span>&nbsp;
-            <span className="item-name">{doneItem.name}</span>&nbsp;
-            <span className="item-description">{doneItem.description}</span>&nbsp;
-            <span className="item-duedate">{formatDate(doneItem.target_completion_date)}</span>&nbsp;
-            <span className="item-delete" onClick={() => handleDelete(doneItem._id)}>delete</span>&nbsp;
-            <span className="item-edit">edit</span>
-          </div>
-        ))} 
+        <Todos
+          deleteId={(deleteId: String) => setDeleteId(deleteId)}
+          checkId={(checkId: String) => setCheckedId(checkId)}
+          deleteTodo={(isDeleted: boolean) => setIsDeleted(isDeleted)}
+          checkTodo={(isChecked: boolean) => setIsChecked(isChecked)}
+          todos={completed} /> 
       </section>
     )
   }

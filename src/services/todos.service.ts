@@ -28,7 +28,6 @@ export const deleteTodo = async (id: String): Promise<Object> => {
       'Accept': 'application/json'
     }
   };
-  console.log(id)
   const res = await fetch(`${url}/${id}/delete`, requestOptions);
   return await res.json();
 }
