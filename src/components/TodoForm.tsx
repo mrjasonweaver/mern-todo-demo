@@ -58,7 +58,7 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
     }
   }, [isSubmitted]);
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit}>
       <label>
         <span className="hide-display">Name:</span>
         <input type="text" placeholder="Name" {...bindName} />
@@ -71,7 +71,7 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
         <span className="hide-display">Due date:</span>
         <input type="date" placeholder="Due date" {...bindDueDate} />
       </label>    
-      <input type="submit" value="Submit" />
+      <input type="submit" className="btn" value="Submit" />
     </form>
   );
 }

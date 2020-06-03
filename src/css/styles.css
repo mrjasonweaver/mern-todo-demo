@@ -14,30 +14,89 @@ body {
 .container {
   margin: 20px auto;
   padding: 0 2% 10px;
-  max-width: 900px;
+  max-width: 600px;
 }
-
-/* Animation */
-.fade-enter {
-  opacity: 0.01;
-  transform: translate(0, 10px);
+.todos-container {
+  margin: 10px 0 50px;
 }
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transform: translate(0, 0);
-  transition: all 300ms ease-in-out;
+.todo, .todo-header, .todo-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
 }
-.fade-exit {
-  opacity: 1;
-  transform: translate(0, 0px);
+.todo-header {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: grey;
+  border-bottom: 1px solid gray;
 }
-.fade-exit.fade-exit-active {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  opacity: 0.01;
-  transform: translate(0, -10px);
-  transition: all 200ms ease-in-out;
+.completed .item-name {
+  text-decoration: line-through;
+}
+.item-check, .item-name, .item-description,
+.item-duedate, .item-delete, .item-edit {
+  padding: 5px 5px 5px 0;
+}
+.item-check, .item-edit, .item-delete {
+  width: 30px;
+  position: relative;
+}
+.todo .item-check:hover, .todo .item-edit:hover, .todo .item-delete:hover {
+  cursor: pointer;
+}
+.item-edit, .item-delete {
+  padding: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  color: grey;
+}
+.item-edit i, .item-delete i {
+  font-size: 18px;
+}
+.todo .item-edit:hover, .todo .item-delete:hover {
+  background: rgba(0,0,0,.1);
+  color: black;
+}
+.item-name {
+  width: 130px;
+}
+.item-description {
+  width: 180px;
+  color: gray;
+}
+.item-duedate {
+  width: 100px;
+  color: gray
+}
+.material-icons {
+  line-height: 1.5;
+}
+.todo-form {
+  border: none;
+}
+.todo-form input {
+  border: none;
+  height: 37px;
+  background: rgba(0,0,0,.05);
+  padding: 5px;
+  outline: 0;
+  color: grey;
+}
+.todo-form input:focus {
+  background: rgba(0,0,0,.1);
+  color: black;
+}
+.todo-form input.btn {
+  color: black;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+.todo-form input.btn:hover {
+  cursor: pointer;
+  background-color: lightgray;
 }

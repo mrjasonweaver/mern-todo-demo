@@ -30,14 +30,14 @@ export const Todos = ({
   }
 
   return (
-    <div>
+    <div className="todos-container">
       <div className="todo-header">
-        <span className="item-check">Status</span>
+        <span className="item-check"></span>
         <span className="item-name">Name</span>
         <span className="item-description">Description</span>
-        <span className="">Due date</span>
-        <span className="item-edit">Edit</span>
-        <span className="item-delete">Delete</span>
+        <span className="item-duedate">Due date</span>
+        <span className="item-edit"></span>
+        <span className="item-delete"></span>
       </div>
       {todos.map((item: Todo, i: number) => (
       item._id === theEditId
@@ -48,7 +48,7 @@ export const Todos = ({
               isEdit={editTodo}
               currentEditTodo={item} />
           </div>
-        : <div key={`${i}--${item._id}`} className="split">
+        : <div key={`${i}--${item._id}`} className={ item.completion_date ? 'completed todo' : 'todo' }>
             <span className="item-check" onClick={() => handleCheck(item._id)}>
               <i className="material-icons">
                 { item.completion_date ? 'check_box' : 'check_box_outline_blank' }
