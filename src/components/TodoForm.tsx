@@ -1,13 +1,25 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useInput } from '~/hooks/inputHook';
-import { postTodo } from '~/services/todos.service';
+import { postTodo, updateTodo } from '~/services/todos.service';
 import { Todo } from '~/models/todo.model';
 
-export const TodoForm = ({submit, isSubmitted}) => {
-  const { value:Name, bind:bindName, reset:resetName } = useInput('');
-  const { value:Description, bind:bindDescription, reset:resetDescription } = useInput('');
-  const { value:DueDate, bind:bindDueDate, reset:resetDueDate } = useInput('');
+export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
+  const {
+    value:Name,
+    bind:bindName,
+    reset:resetName
+  } = useInput(currentEditTodo ? currentEditTodo.name : '');
+  const {
+    value:Description,
+    bind:bindDescription,
+    reset:resetDescription
+  } = useInput(currentEditTodo ? currentEditTodo.description : '');
+  const {
+    value:DueDate,
+    bind:bindDueDate,
+    reset:resetDueDate
+  } = useInput(currentEditTodo ? currentEditTodo.target_completion_date.split('T')[0] : '');
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -21,7 +33,17 @@ export const TodoForm = ({submit, isSubmitted}) => {
         description: Description,
         target_completion_date: DueDate
       };
-      postTodo(postData)
+      if (isEdit) {
+        if (currentEditTodo?._id) {    
+          updateTodo(currentEditTodo._id, postData)
+            .then(data => {
+              console.log(data, currentEditTodo);
+            }, error => {
+              console.error(error);
+            });
+        }
+      } else {
+        postTodo(postData)
         .then(() => {
           resetName();
           resetDescription();
@@ -32,10 +54,9 @@ export const TodoForm = ({submit, isSubmitted}) => {
           resetDescription();
           resetDueDate();
         });
+      }
     }
   }, [isSubmitted]);
-
-
   return (
     <form onSubmit={handleSubmit}>
       <label>

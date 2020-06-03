@@ -44,3 +44,16 @@ export const checkTodo = async (id: String, postData: TodoChecked): Promise<Obje
   const res = await fetch(`${url}/${id}/update`, requestOptions);
   return await res.json();
 }
+
+export const updateTodo = async (id: String, postData: Todo): Promise<Object> => {
+  const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(postData)
+  };
+  const res = await fetch(`${url}/${id}/update`, requestOptions);
+  return await res.json();
+}

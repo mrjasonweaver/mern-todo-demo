@@ -17,10 +17,12 @@ export const TodoList: FunctionComponent = () => {
   const [deleteId, setDeleteId] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
   const [checkId, setCheckedId] = useState(null);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
 
   useEffect(() => {
     fetchTodos().then((result: Todo[]) => {
-      const sorted: Todo[] = mapSort(
+      const sorted = mapSort(
         result,
         (element: Todo): number => {
           const theDate: any = element.target_completion_date;
@@ -61,7 +63,12 @@ export const TodoList: FunctionComponent = () => {
         setIsChecked(false);
       });
     }
-  }, [isSubmitted, isChecked, isDeleted]);
+    if (isSubmitted) {
+      setEditId(null);
+      setIsEdit(false);
+      setIsSubmitted(false);
+    }
+  }, [isSubmitted, isChecked, isDeleted, isEdit]);
 
   if (error) {
     return <section className="container">Error: {error.message}</section>;
@@ -76,20 +83,32 @@ export const TodoList: FunctionComponent = () => {
         </p>
         <TodoForm
           submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
-          isSubmitted={isSubmitted} />
+          isSubmitted={isSubmitted}
+          isEdit={isEdit}
+          currentEditTodo={null} />
         <Todos
           deleteId={(deleteId: String) => setDeleteId(deleteId)}
           checkId={(checkId: String) => setCheckedId(checkId)}
+          editId={(editId: String) => setEditId(editId)}
+          theEditId={editId}
           deleteTodo={(isDeleted: boolean) => setIsDeleted(isDeleted)}
           checkTodo={(isChecked: boolean) => setIsChecked(isChecked)}
+          editTodo={(isEdit: boolean) => setIsEdit(isEdit)}
+          submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
+          isSubmitted={isSubmitted}
           todos={todos} />
         <h3>Completed</h3>
         <Todos
           deleteId={(deleteId: String) => setDeleteId(deleteId)}
           checkId={(checkId: String) => setCheckedId(checkId)}
+          editId={(editId: String) => setEditId(editId)}
+          theEditId={editId}
           deleteTodo={(isDeleted: boolean) => setIsDeleted(isDeleted)}
           checkTodo={(isChecked: boolean) => setIsChecked(isChecked)}
-          todos={completed} /> 
+          editTodo={(isEdit: boolean) => setIsEdit(isEdit)}
+          submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
+          isSubmitted={isSubmitted}
+          todos={completed} />
       </section>
     )
   }
