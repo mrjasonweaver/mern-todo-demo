@@ -76,7 +76,14 @@ export const TodoList: FunctionComponent = () => {
   } else {
     return (
       <section className="container">
-        <h3>Add Todo</h3>
+      <div className="todo-header">
+        <span className="item-check"></span>
+        <span className="item-name">Name</span>
+        <span className="item-description">Description</span>
+        <span className="item-duedate">Due date</span>
+        <span className="item-edit"></span>
+        <span className="item-delete"></span>
+      </div>
         <TodoForm
           submit={(isSubmitted: boolean) => setIsSubmitted(isSubmitted)}
           isSubmitted={isSubmitted}

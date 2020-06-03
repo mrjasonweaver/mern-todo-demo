@@ -70,8 +70,12 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
       <label>
         <span className="hide-display">Due date:</span>
         <input type="date" placeholder="Due date" {...bindDueDate} />
-      </label>    
-      <input type="submit" className="btn" value="Submit" />
+      </label>
+      {
+      Name
+        ? <input type="submit" className="btn" value="Add" />
+        : <input type="submit" disabled className="btn" value="Add" /> 
+      }
     </form>
   );
 }
