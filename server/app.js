@@ -33,8 +33,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/todos', todo);
 
-let port = 5000;
+// Create link to React build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
-app.listen(port, () => {
-  console.log('Server is up and running on port ' + port);
+// Initialize the app.
+const server = app.listen(process.env.PORT || 8080, function () {
+  const port = server.address().port;
+  console.log("App now running on port", port);
 });

@@ -1,6 +1,6 @@
 import { Todo, TodoChecked } from '~/models/todo.model';
 
-const url = 'http://localhost:5000/todos';
+const url = 'http://localhost:8080/todos';
 
 export const fetchTodos = async (): Promise<Todo[]> => {
   const res = await fetch(`${url}`);
