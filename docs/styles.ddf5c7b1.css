@@ -1,0 +1,157 @@
+/* Globals */
+:root{
+  --default-transition: .25s all ease-in-out;
+  --font-primary: "Ubuntu", monospace;
+  --font-secondary: "Ubuntu Mono", monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  letter-spacing: .01em;
+}
+.hide-display {
+  display: none;
+}
+.container {
+  margin: 20px auto;
+  padding: 0 2% 10px;
+  max-width: 580px;
+}
+.todos-container {
+  margin: 0 0 70px;
+}
+.todo, .todo-header, .todo-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+.todo-header {
+  font-family: var(--font-secondary);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: grey;
+  margin-top: 20px;
+  border-bottom: 1px solid grey;
+}
+.completed .item-name {
+  text-decoration: line-through;
+}
+.todos-container .completed {
+  transition: var(--default-transition);
+  opacity: .25;
+}
+.todos-container:hover .completed {
+  opacity: 1;
+}
+.item-check, .item-name, .item-description,
+.item-duedate, .item-delete, .item-edit {
+  padding: 5px 5px 5px 0;
+}
+.item-check, .item-edit, .item-delete {
+  width: 30px;
+  position: relative;
+}
+.todo .item-check:hover, .todo .item-edit:hover, .todo .item-delete:hover {
+  cursor: pointer;
+}
+.item-edit, .item-delete {
+  transition: var(--default-transition);
+  padding: 5px;
+  width: 24px;
+  height: 24px;
+  color: grey;
+}
+.item-edit i, .item-delete i {
+  font-size: 18px;
+}
+.todo .item-edit:hover, .todo .item-delete:hover {
+  color: black;
+}
+.item-name {
+  width: 130px;
+}
+.todo .item-name {
+  font-weight: 700;
+}
+.completed .item-name {
+  font-weight: 400;
+}
+.item-description {
+  width: 180px;
+  color: grey;
+}
+.item-duedate {
+  width: 100px;
+  color: grey
+}
+.todo .item-description,
+.todo .item-duedate {
+  font-family: var(--font-secondary);
+  font-size: 90%;
+}
+.material-icons {
+  line-height: 1.5;
+}
+.todo-form {
+  border: none;
+  margin-top: 20px;
+  position: relative;
+}
+.todos-container .todo-form {
+  border-bottom: 1px solid lightgray;
+  margin-top: 0;
+  position: relative;
+}
+.todo-form label {
+  position: relative;
+}
+.todo-form input {
+  transition: var(--default-transition);
+  font-family: var(--font-secondary);
+  border: none;
+  height: 37px;
+  background: rgba(0,0,0,.05);
+  padding: 5px 13px;
+  outline: 0;
+  color: grey;
+}
+.todo-form input:focus {
+  background: rgba(0,0,0,.1);
+  color: black;
+}
+.todo-form input.btn {
+  transition: var(--default-transition);
+  color: white;
+  background-color: black;
+  border-radius: 2px;
+  border: none;
+  padding: 5px 25px;
+  height: 47px;
+}
+.todo-form input.btn[disabled] {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+.todo-form input.btn:hover {
+  cursor: pointer;
+  background-color: grey;
+}
+.todo-form input.btn[disabled]:hover {
+  background-color: lightgrey;
+  cursor: not-allowed;
+}
+.label-display {
+  position: absolute;
+  top: -9px;
+  left: 0px;
+  font-size: 11px;
+  background: white;
+  padding: 0 12px;
+  color: grey;
+}

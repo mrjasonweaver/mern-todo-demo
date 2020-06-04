@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/todos', todo);
 
 // Create link to React build directory
-var distDir = __dirname + "/dist/";
+var distDir = __dirname + "/docs/";
 app.use(express.static(distDir));
 
 // Initialize the app.

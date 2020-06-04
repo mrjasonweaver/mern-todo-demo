@@ -1,6 +1,6 @@
 import { Todo, TodoChecked } from '~/models/todo.model';
 
-const url = 'http://localhost:8080/todos';
+const url = 'https://mern-todo-demo.herokuapp.com/todos';
 
 export const fetchTodos = async (): Promise<Todo[]> => {
   const res = await fetch(`${url}`);
