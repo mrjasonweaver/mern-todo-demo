@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html -d docs --public-url https://mrjasonweaver.github.io/mern-todo-demo/ --no-minify --no-source-maps",
+    "start": "node server/app.js",
+    "build": "parcel build src/index.html -d docs --public-url https://mern-todo-demo.herokuapp.com/ --no-minify --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
