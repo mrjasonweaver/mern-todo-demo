@@ -1227,7 +1227,7 @@ exports.fetchTodos = function () {
 
 exports.postTodo = function (postData) {
   return __awaiter(void 0, void 0, Promise, function () {
-    var requestOptions, res;
+    var requestOptions;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
@@ -1244,12 +1244,6 @@ exports.postTodo = function (postData) {
           , fetch(url + "/create", requestOptions)];
 
         case 1:
-          res = _a.sent();
-          return [4
-          /*yield*/
-          , res.json()];
-
-        case 2:
           return [2
           /*return*/
           , _a.sent()];
@@ -1260,7 +1254,7 @@ exports.postTodo = function (postData) {
 
 exports.deleteTodo = function (id) {
   return __awaiter(void 0, void 0, Promise, function () {
-    var requestOptions, res;
+    var requestOptions;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
@@ -1276,12 +1270,6 @@ exports.deleteTodo = function (id) {
           , fetch(url + "/" + id + "/delete", requestOptions)];
 
         case 1:
-          res = _a.sent();
-          return [4
-          /*yield*/
-          , res.json()];
-
-        case 2:
           return [2
           /*return*/
           , _a.sent()];
@@ -1292,7 +1280,7 @@ exports.deleteTodo = function (id) {
 
 exports.checkTodo = function (id, postData) {
   return __awaiter(void 0, void 0, Promise, function () {
-    var requestOptions, res;
+    var requestOptions;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
@@ -1309,12 +1297,6 @@ exports.checkTodo = function (id, postData) {
           , fetch(url + "/" + id + "/update", requestOptions)];
 
         case 1:
-          res = _a.sent();
-          return [4
-          /*yield*/
-          , res.json()];
-
-        case 2:
           return [2
           /*return*/
           , _a.sent()];
@@ -1325,7 +1307,7 @@ exports.checkTodo = function (id, postData) {
 
 exports.updateTodo = function (id, postData) {
   return __awaiter(void 0, void 0, Promise, function () {
-    var requestOptions, res;
+    var requestOptions;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
@@ -1342,12 +1324,6 @@ exports.updateTodo = function (id, postData) {
           , fetch(url + "/" + id + "/update", requestOptions)];
 
         case 1:
-          res = _a.sent();
-          return [4
-          /*yield*/
-          , res.json()];
-
-        case 2:
           return [2
           /*return*/
           , _a.sent()];
@@ -1448,8 +1424,7 @@ var react_1 = require("react");
 
 var inputHook_1 = require("~/hooks/inputHook");
 
-var todos_service_1 = require("~/services/todos.service"); // it's a form!
-
+var todos_service_1 = require("~/services/todos.service");
 
 exports.TodoForm = function (_a) {
   var submit = _a.submit,
@@ -1754,8 +1729,7 @@ var TodoForm_1 = require("~/components/TodoForm");
 
 var Todos_1 = require("~/components/Todos");
 
-var mapsort_1 = __importDefault(require("mapsort")); // 😎 Let's make a todo app 
-
+var mapsort_1 = __importDefault(require("mapsort"));
 
 exports.TodoList = function () {
   var _a = react_1.useState(false),
