@@ -16,8 +16,7 @@ export const postTodo = async (postData: Todo): Promise<Object> => {
     },
     body: JSON.stringify(postData)
   };
-  const res = await fetch(`${url}/create`, requestOptions);
-  return await res.json();
+  return await fetch(`${url}/create`, requestOptions);
 }
 
 export const deleteTodo = async (id: String): Promise<Object> => {
@@ -28,8 +27,7 @@ export const deleteTodo = async (id: String): Promise<Object> => {
       'Accept': 'application/json'
     }
   };
-  const res = await fetch(`${url}/${id}/delete`, requestOptions);
-  return await res.json();
+  return await fetch(`${url}/${id}/delete`, requestOptions);
 }
 
 export const checkTodo = async (id: String, postData: TodoChecked): Promise<Object> => {
@@ -41,8 +39,7 @@ export const checkTodo = async (id: String, postData: TodoChecked): Promise<Obje
     },
     body: JSON.stringify(postData)
   };
-  const res = await fetch(`${url}/${id}/update`, requestOptions);
-  return await res.json();
+  return await fetch(`${url}/${id}/update`, requestOptions);
 }
 
 export const updateTodo = async (id: String, postData: Todo): Promise<Object> => {
@@ -54,6 +51,5 @@ export const updateTodo = async (id: String, postData: Todo): Promise<Object> =>
     },
     body: JSON.stringify(postData)
   };
-  const res = await fetch(`${url}/${id}/update`, requestOptions);
-  return await res.json();
+  return await fetch(`${url}/${id}/update`, requestOptions);
 }

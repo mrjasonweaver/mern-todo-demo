@@ -4,7 +4,6 @@ import { useInput } from '~/hooks/inputHook';
 import { postTodo, updateTodo } from '~/services/todos.service';
 import { Todo } from '~/models/todo.model';
 
-// it's a form!
 export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
   const {
     value:Name,
@@ -40,7 +39,7 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
             .then(data => {
               return data;
             }, error => {
-              console.error(error);
+                console.error(error);
             });
         }
       } else {
