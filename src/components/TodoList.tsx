@@ -6,6 +6,7 @@ import { Todos } from '~/components/Todos';
 import { Todo, TodoChecked } from '~/models/todo.model';
 import mapSort from 'mapsort'; 
 
+// 😎 Let's make a todo app 
 export const TodoList: FunctionComponent = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState(null);

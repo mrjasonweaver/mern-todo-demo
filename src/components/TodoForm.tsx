@@ -4,6 +4,7 @@ import { useInput } from '~/hooks/inputHook';
 import { postTodo, updateTodo } from '~/services/todos.service';
 import { Todo } from '~/models/todo.model';
 
+// it's a form!
 export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
   const {
     value:Name,
@@ -37,7 +38,7 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
         if (currentEditTodo?._id) {    
           updateTodo(currentEditTodo._id, postData)
             .then(data => {
-              console.log(data, currentEditTodo);
+              return data;
             }, error => {
               console.error(error);
             });
@@ -60,16 +61,16 @@ export const TodoForm = ({submit, isSubmitted, isEdit, currentEditTodo}) => {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <label>
-        <span className="hide-display">Name:</span>
-        <input type="text" placeholder="Name" {...bindName} />
+        <span className="label-display">Name</span>
+        <input type="text" placeholder="Order coffee filters" {...bindName} />
       </label>
       <label>
-        <span className="hide-display">Description:</span>
-        <input type="text" placeholder="Description" {...bindDescription} />
+        <span className="label-display">Description</span>
+        <input type="text" placeholder="Get 100 count" {...bindDescription} />
       </label>
       <label>
-        <span className="hide-display">Due date:</span>
-        <input type="date" placeholder="Due date" {...bindDueDate} />
+        <span className="label-display">Due date</span>
+        <input type="date" {...bindDueDate} />
       </label>
       {
       Name

@@ -37,7 +37,7 @@ body {
   text-transform: uppercase;
   color: grey;
   margin-top: 20px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid grey;
 }
 .completed .item-name {
   text-decoration: line-through;
@@ -84,11 +84,11 @@ body {
 }
 .item-description {
   width: 180px;
-  color: gray;
+  color: grey;
 }
 .item-duedate {
   width: 100px;
-  color: gray
+  color: grey
 }
 .todo .item-description,
 .todo .item-duedate {
@@ -101,6 +101,15 @@ body {
 .todo-form {
   border: none;
   margin-top: 20px;
+  position: relative;
+}
+.todos-container .todo-form {
+  border-bottom: 1px solid lightgray;
+  margin-top: 0;
+  position: relative;
+}
+.todo-form label {
+  position: relative;
 }
 .todo-form input {
   transition: var(--default-transition);
@@ -136,4 +145,13 @@ body {
 .todo-form input.btn[disabled]:hover {
   background-color: lightgrey;
   cursor: not-allowed;
+}
+.label-display {
+  position: absolute;
+  top: -9px;
+  left: 0px;
+  font-size: 11px;
+  background: white;
+  padding: 0 12px;
+  color: grey;
 }
