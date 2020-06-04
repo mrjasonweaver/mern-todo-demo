@@ -1,10 +1,15 @@
 /* Globals */
+:root{
+  --default-transition: .25s all ease-in-out;
+  --font-primary: "Ubuntu", monospace;
+  --font-secondary: "Ubuntu Mono", monospace;
+}
 * {
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: var(--font-primary);
   line-height: 1.5;
   letter-spacing: .01em;
 }
@@ -14,10 +19,10 @@ body {
 .container {
   margin: 20px auto;
   padding: 0 2% 10px;
-  max-width: 600px;
+  max-width: 580px;
 }
 .todos-container {
-  margin: 10px 0 50px;
+  margin: 0 0 70px;
 }
 .todo, .todo-header, .todo-form {
   display: flex;
@@ -26,14 +31,23 @@ body {
   border-bottom: 1px solid lightgray;
 }
 .todo-header {
-  font-size: 11px;
+  font-family: var(--font-secondary);
+  font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: grey;
+  margin-top: 20px;
   border-bottom: 1px solid gray;
 }
 .completed .item-name {
   text-decoration: line-through;
+}
+.todos-container .completed {
+  transition: var(--default-transition);
+  opacity: .25;
+}
+.todos-container:hover .completed {
+  opacity: 1;
 }
 .item-check, .item-name, .item-description,
 .item-duedate, .item-delete, .item-edit {
@@ -47,21 +61,26 @@ body {
   cursor: pointer;
 }
 .item-edit, .item-delete {
+  transition: var(--default-transition);
   padding: 5px;
   width: 24px;
   height: 24px;
-  border-radius: 24px;
   color: grey;
 }
 .item-edit i, .item-delete i {
   font-size: 18px;
 }
 .todo .item-edit:hover, .todo .item-delete:hover {
-  background: rgba(0,0,0,.1);
   color: black;
 }
 .item-name {
   width: 130px;
+}
+.todo .item-name {
+  font-weight: 700;
+}
+.completed .item-name {
+  font-weight: 400;
 }
 .item-description {
   width: 180px;
@@ -71,6 +90,11 @@ body {
   width: 100px;
   color: gray
 }
+.todo .item-description,
+.todo .item-duedate {
+  font-family: var(--font-secondary);
+  font-size: 90%;
+}
 .material-icons {
   line-height: 1.5;
 }
@@ -79,10 +103,12 @@ body {
   margin-top: 20px;
 }
 .todo-form input {
+  transition: var(--default-transition);
+  font-family: var(--font-secondary);
   border: none;
   height: 37px;
   background: rgba(0,0,0,.05);
-  padding: 5px;
+  padding: 5px 13px;
   outline: 0;
   color: grey;
 }
@@ -91,6 +117,7 @@ body {
   color: black;
 }
 .todo-form input.btn {
+  transition: var(--default-transition);
   color: white;
   background-color: black;
   border-radius: 2px;
