@@ -7,4 +7,4 @@ See [demo](https://mrjasonweaver.github.io/mern-todo-demo/)
 
 
 ### Add or edit a todo
-![alt text](./mern-todo-demo.gif "SVG logo with loading animation")
+![alt text](./mern-todo-demo.gif "Add or edit a todo")
